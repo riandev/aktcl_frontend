@@ -28,9 +28,9 @@ const SurveyBody = () => {
     setSearchNumber(e.target.value);
   };
   const handleSearch = () => {
-    fetch(`http://localhost:5001/dMatched/${searchNumber}`)
-    .then(res => res.json())
-    .then(data=>setConsumer(data))
+    fetch(`http://192.168.1.11:5001/dMatched/${searchNumber}`)
+      .then((res) => res.json())
+      .then((data) => setConsumer(data));
     setPressSearch(false);
   };
   const q1value = (e) => {
@@ -40,6 +40,7 @@ const SurveyBody = () => {
     setQ2(e.target.value);
   };
   const q3value = (e) => {
+    console.log(e.target.value);
     setQ3(e.target.value);
   };
   const q4value = (e) => {
@@ -52,6 +53,7 @@ const SurveyBody = () => {
     setQ6(e.target.value);
   };
   const q7value = (e) => {
+    console.log(e.target.value);
     setQ7(e.target.value);
   };
   const q8value = (e) => {
@@ -83,7 +85,7 @@ const SurveyBody = () => {
       ans11: q11,
       agentID: agent,
     };
-    fetch(`http://localhost:5001/answers/${consumer._id}`, {
+    fetch(`http://192.168.1.11:5001/answers/${consumer._id}`, {
       method: "PATCH",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(answer),
@@ -171,300 +173,110 @@ const SurveyBody = () => {
       >
         <h6>৩.আপনি বর্তমানে কোন ব্র্যান্ডের সিগারেট ধূমপান করেন?</h6>
         <Form.Group onChange={q3value} as={Row}>
-          <Col sm={10}>
-            <Form.Check
-              type="radio"
-              label="মেরিস"
-              value="marise"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
-            <Form.Check
-              type="radio"
-              label="ডার্বি"
-              value="derby"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="পাইলট"
-              value="pilot"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="হলিউড"
-              value="hollywood"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="শেখ"
-              value="sheikh"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="রয়েলস"
-              value="royals"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="অন্যান্য"
-              value="others"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-          </Col>
+          <Form.Control as="select" className="w-50 ml-3">
+            <option>...</option>
+            <option value="marise">মেরিস</option>
+            <option value="derby">ডার্বি</option>
+            <option value="pilot">পাইলট</option>
+            <option value="hollywood">হলিউড</option>
+            <option value="sheikh">শেখ</option>
+            <option value="royals">রয়েলস</option>
+            <option value="others">অন্যান্য</option>
+          </Form.Control>
         </Form.Group>
       </div>
       <div
         style={{
-          display: q3 === null ? "none" : "block",
+          display:
+            q3 === "marise" ||
+            q3 === "derby" ||
+            q3 === "pilot" ||
+            q3 === "hollywood" ||
+            q3 === "sheikh" ||
+            q3 === "royals" ||
+            q3 === "others"
+              ? "block"
+              : "none",
         }}
         className="mt-2"
       >
         <h6>৪.কত দিন যাবত মেরিস ধূমপান করছেন?</h6>
         <Form.Group onChange={q4value} as={Row}>
-          <Col sm={10}>
-            <Form.Check
-              type="radio"
-              label="০দিন"
-              value="0days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
-            <Form.Check
-              type="radio"
-              label="১দিন"
-              value="1days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="২দিন"
-              value="2days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
-            <Form.Check
-              type="radio"
-              label="৩দিন"
-              value="3days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৪দিন"
-              value="4days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
-            <Form.Check
-              type="radio"
-              label="৫দিন"
-              value="5days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৬দিন"
-              value="6days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
-            <Form.Check
-              type="radio"
-              label="৭দিন"
-              value="7days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৮দিন"
-              value="8days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৯দিন"
-              value="9days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১০দিন"
-              value="10days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১১দিন"
-              value="11days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১২দিন"
-              value="12days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১৩দিন"
-              value="13days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১৪দিন"
-              value="14days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১৫দিন"
-              value="15days"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৩সপ্তাহ"
-              value="3week"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১মাস"
-              value="1month"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="২মাস"
-              value="2month"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৩মাস"
-              value="3month"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৪মাস"
-              value="4month"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৫মাস"
-              value="5month"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="৬মাস"
-              value="6month"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১বছর"
-              value="1year"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="১বছরের বেশি"
-              value="1yearplus"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-          </Col>
+          <Form.Control as="select" className="w-50 ml-3">
+            <option>...</option>
+            <option value="0days">০দিন</option>
+            <option value="1days">১দিন</option>
+            <option value="2days">২দিন</option>
+            <option value="3days">৩দিন</option>
+            <option value="4days">৪দিন</option>
+            <option value="5days">৫দিন</option>
+            <option value="6days">৬দিন</option>
+            <option value="7days">৭দিন</option>
+            <option value="8days">৮দিন</option>
+            <option value="9days">৯দিন</option>
+            <option value="10days">১০দিন</option>
+            <option value="11days">১১দিন</option>
+            <option value="12days">১২দিন</option>
+            <option value="13days">১৩দিন</option>
+            <option value="14days">১৪দিন</option>
+            <option value="15days">১৫দিন</option>
+            <option value="3week">৩সপ্তাহ</option>
+            <option value="1month">১মাস</option>
+            <option value="2month">২মাস</option>
+            <option value="3month">৩মাস</option>
+            <option value="4month">৪মাস</option>
+            <option value="5month">৫মাস</option>
+            <option value="6month">৬মাস</option>
+            <option value="1year">১বছর</option>
+            <option value="1yearplus">১বছরের বেশি</option>
+          </Form.Control>
         </Form.Group>
       </div>
-      <div style={{ display: q4 === null ? "none" : "block" }} className="mt-2">
+      <div
+        style={{
+          display:
+            q4 === "0days" ||
+            q4 === "1days" ||
+            q4 === "2days" ||
+            q4 === "3days" ||
+            q4 === "4days" ||
+            q4 === "5days" ||
+            q4 === "6days" ||
+            q4 === "7days" ||
+            q4 === "8days" ||
+            q4 === "9days" ||
+            q4 === "10days" ||
+            q4 === "11days" ||
+            q4 === "12days" ||
+            q4 === "13days" ||
+            q4 === "14days" ||
+            q4 === "15days" ||
+            q4 === "3week" ||
+            q4 === "1month" ||
+            q4 === "2month" ||
+            q4 === "3month" ||
+            q4 === "4month" ||
+            q4 === "5month" ||
+            q4 === "6month" ||
+            q4 === "1year" ||
+            q4 === "1yearplus"
+              ? "block"
+              : "none",
+        }}
+        className="mt-2"
+      >
         <h6>৫.এর আগে কোন ব্র্যান্ডের সিগারেট ধূমপান করতেন?</h6>
         <Form.Group onChange={q5value} as={Row}>
-          <Col sm={10}>
-            <Form.Check
-              type="radio"
-              label="মেরিস"
-              value="marise"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
-            <Form.Check
-              type="radio"
-              label="ডার্বি"
-              value="derby"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="পাইলট"
-              value="pilot"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="হলিউড"
-              value="hollywood"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="শেখ"
-              value="sheikh"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="রয়েলস"
-              value="royals"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-            <Form.Check
-              type="radio"
-              label="অন্যান্য"
-              value="others"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-          </Col>
+          <Form.Control as="select" className="w-50 ml-3">
+            <option>...</option>
+            <option value="marise">মেরিস</option>
+            <option value="derby">ডার্বি</option>
+            <option value="pilot">পাইলট</option>
+            <option value="hollywood">হলিউড</option>
+            <option value="sheikh">শেখ</option>
+            <option value="royals">রয়েলস</option>
+            <option value="others">অন্যান্য</option>
+          </Form.Control>
         </Form.Group>
       </div>
       <div style={{ display: q5 === null ? "none" : "block" }} className="mt-2">
@@ -515,7 +327,12 @@ const SurveyBody = () => {
           </Col>
         </Form.Group>
       </div>
-      <div style={{display:q3==='marise'&& q7==='marise'?'block':'none'}} className="mt-2">
+      <div
+        style={{
+          display: q3 === "marise" && q7 === "marise" ? "block" : "none",
+        }}
+        className="mt-2"
+      >
         <h6>
           ৮.স্যার, আপনি কি আমাদের প্রতিনিধি দেখা করার পর থেকে মেরিস সিগারেট
           ধূমপান করছেন?
@@ -540,7 +357,11 @@ const SurveyBody = () => {
         </Form.Group>
       </div>
       <div>
-        <div style={{display:q8===null? "none" : "block"}} className="mt-2">
+        <div
+          style={{
+            display: ((q3==='derby'||q3==='pilot'||q3==='hollywood'||q3==='sheikh'||q3==='royals'||q3==='others')&&(q7==='marise'?'block':'none'))||(q8==='yes'||q8==='no'?'block':'none')}}
+          className="mt-2"
+        >
           <h6>৯.আপনাকে কি কোন সিগারেট দিয়েছিল টেস্ট করার জন্য?</h6>
           <Form.Group onChange={q9value} as={Row}>
             <Col sm={10}>
@@ -562,80 +383,33 @@ const SurveyBody = () => {
           </Form.Group>
         </div>
       </div>
-      <div style={{display:q9==='yes' ? 'block':'none'}} className="mt-2">
+      <div
+        style={{ display: q9 === "yes" ? "block" : "none" }}
+        className="mt-2"
+      >
         <h6>
           ১০.স্যার, আপনি তখন কত (প্যাকেট সংখ্যা ডাটাবেজ থেকে আসবে এবং দেখাবে)
           প্যাকেট মেরিস সিগারেট কিনেছিলেন?
         </h6>
         <Form.Group onChange={q10value} as={Row}>
-          <Col sm={10}>
-              <Form.Check
-                type="radio"
-                label="০প্যাকেট"
-                value="0packet"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios1"
-              />
-              <Form.Check
-                type="radio"
-                label="১প্যাকেট"
-                value="1packet"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="২প্যাকেট"
-                value="2packet"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="৩প্যাকেট"
-                value="3packet"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="৪প্যাকেট"
-                value="4packet"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="৫প্যাকেট"
-                value="5packet"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="প্যাকেট সেলস+সোয়াপিং"
-                value="packet_sales+swaping"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="সোয়াপিং"
-                value="swaping"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="অন্যান্য"
-                value="others"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-          </Col>
+          <Form.Control as="select" className="w-50 ml-3">
+            <option value="0packet">...</option>
+            <option value="0packet">০প্যাকেট</option>
+            <option value="1packet">১প্যাকেট</option>
+            <option value="2packet">২প্যাকেট</option>
+            <option value="3packet">৩প্যাকেট</option>
+            <option value="4packet">৪প্যাকেট</option>
+            <option value="5packet">৫প্যাকেট</option>
+            <option value="packet_sales+swaping">প্যাকেট সেলস+সোয়াপিং</option>
+            <option value="swaping">সোয়াপিং</option>
+            <option value="others">অন্যান্য</option>
+          </Form.Control>
         </Form.Group>
       </div>
-      <div style={{ display: q10 === null ? "none" : "block" }} className="mt-2">
+      <div
+        style={{ display: q10 === null ? "none" : "block" }}
+        className="mt-2"
+      >
         <h6>১১. স্যার, আপনাকে কি সিগারেট এর সাথে চা-নাস্তা পান করিয়েছে?</h6>
         <Form.Group onChange={q11value} as={Row}>
           <Col sm={10}>
@@ -659,7 +433,15 @@ const SurveyBody = () => {
       {/* Final Question */}
       <div
         style={{
-          display: q1 === "no" || q2 === "no"|| q6=='no'||q7==='others'||q11==='yes'||q11==='no' ? "block" : "none",
+          display:
+            q1 === "no" ||
+            q2 === "no" ||
+            q6 == "no" ||
+            q7 === "others" ||
+            q11 === "yes" ||
+            q11 === "no"
+              ? "block"
+              : "none",
         }}
         className="mt-3"
       >

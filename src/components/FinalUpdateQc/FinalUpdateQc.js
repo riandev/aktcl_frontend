@@ -16,7 +16,7 @@ const FinalUpdateQc = ({ ansData }) => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    fetch(`http://localhost:5001/finalUpdate/${id}`, {
+    fetch(`http://192.168.1.11:5001/finalUpdate/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -24,7 +24,7 @@ const FinalUpdateQc = ({ ansData }) => {
       .then((res) => res.json())
       .then((output) => {
         console.log(output);
-        setStatus(output)
+        setStatus(output);
       });
     // window.location.reload(false);
   };
@@ -43,6 +43,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer1}
             >
+              <option>...</option>
               <option>yes</option>
               <option>no</option>
             </Form.Control>
@@ -56,6 +57,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer2}
             >
+              <option>...</option>
               <option>yes</option>
               <option>no</option>
             </Form.Control>
@@ -69,6 +71,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer3}
             >
+              <option>...</option>
               <option>marise</option>
               <option>derby</option>
               <option>pilot</option>
@@ -87,6 +90,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer4}
             >
+              <option>...</option>
               <option>0days</option>
               <option>1days</option>
               <option>2days</option>
@@ -125,6 +129,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer5}
             >
+              <option>...</option>
               <option>marise</option>
               <option>derby</option>
               <option>pilot</option>
@@ -143,6 +148,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer6}
             >
+              <option>...</option>
               <option>yes</option>
               <option>no</option>
             </Form.Control>
@@ -156,6 +162,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer7}
             >
+              <option>...</option>
               <option>marise</option>
               <option>others</option>
             </Form.Control>
@@ -169,6 +176,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer8}
             >
+              <option>...</option>
               <option>yes</option>
               <option>no</option>
             </Form.Control>
@@ -182,6 +190,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer9}
             >
+              <option>...</option>
               <option>yes</option>
               <option>no</option>
             </Form.Control>
@@ -195,6 +204,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer10}
             >
+              <option>...</option>
               <option>0packet</option>
               <option>1packet</option>
               <option>2packet</option>
@@ -215,6 +225,7 @@ const FinalUpdateQc = ({ ansData }) => {
               as="select"
               defaultValue={ansData.answer11}
             >
+              <option>...</option>
               <option>yes</option>
               <option>no</option>
             </Form.Control>

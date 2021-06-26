@@ -5,7 +5,7 @@ const Reports = () => {
   const [report, setReport] = useState([]);
   const [dStatus,setDstatus]=useState(false);
   useEffect(() => {
-    fetch("http://localhost:5001/reports")
+    fetch("http://192.168.1.11:5001/reports")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -13,7 +13,7 @@ const Reports = () => {
       });
   }, []);
   const handleDelete=() =>{
-    fetch("http://localhost:5001/deleteAll",{
+    fetch("http://192.168.1.11:5001/deleteAll",{
       method: "DELETE",
       headers: {'Content-type':'application/json'}
     })
